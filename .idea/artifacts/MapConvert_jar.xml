@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MapConvert:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MapConvert_jar</output-path>
+    <root id="archive" name="MapConvert.jar">
+      <element id="module-output" name="MapConvert" />
+      <element id="extracted-dir" path="$KOTLIN_BUNDLED$/lib/kotlin-runtime.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$KOTLIN_BUNDLED$/lib/kotlin-reflect.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/dom4j-1.6.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
