@@ -42,10 +42,10 @@ object Util {
         var resultColor = Integer.toHexString(Color.WHITE.rgb);
         if (imgFile.exists()) {
             var img = ImageIO.read(imgFile);
-            var result = MMCQ.computeMap(img, 1);
+            var result = MMCQ.computeMap(img, 2);
             if (result != null && result.boxes != null && result.boxes.size > 0) {
                 var color = result.boxes[0].color
-                resultColor = Integer.toHexString(Color(color[0], color[1],color[2]).rgb)
+                resultColor = "0x"+Integer.toHexString(Color(color[0], color[1],color[2]).rgb)
             }
         }
         return resultColor

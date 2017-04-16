@@ -151,8 +151,8 @@ object MapConvert {
         iosOutFolder?.mkdirs()
 
         processAnim(folder)
-        processGroup(folder)
         renameImgFile(folder)
+        processGroup(folder)
     }
 
     private fun processAnim(folder: File) {
@@ -292,7 +292,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
 
             var mapBgColor = "0xffecab5d"
             var prefix = gamePrefix + mapData.filePrefix
-            var bgFile = File(androidOutFolder, "xhdpi/${prefix}_map.png")
+            var bgFile = File(androidOutFolder, "drawable-xhdpi/${prefix}_map.png")
             if (bgFile.exists()) {
                 mapBgColor = Util.bgColor(bgFile)
             }
