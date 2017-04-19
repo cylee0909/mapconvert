@@ -26,19 +26,49 @@ object MapConvert {
     @JvmStatic
     fun readMap(args: Array<String>) {
         if (args.size < 1) {
-            println("file not exits, please input the tmx file path!")
+            println("file not exits, please input the tmx file path or folder contains txm file!")
             return
         }
         var pathName = args[0]
         var file = File(pathName)
-        if (!file.exists() || !file.name.endsWith("tmx")) {
-            println("file not exits, please input the tmx file path!")
+        if (!file.exists()) {
+            println("${file.absolutePath} not exits, please input the correct file path!")
             return
         }
-//        var file = File("""D:\四五六地图定位包\四年级下地图定位包\calc_2.tmx""")
 
+        if (file.isFile && file.name.endsWith("tmx")) {
+            processTmxFile(file)
+        } else{
+            file.walkTopDown().maxDepth(2).forEach {
+                if (it.isFile && it.name.endsWith("tmx")) {
+                    processTmxFile(it)
+                }
+            }
+        }
+    }
+
+    fun convert(folder: File) {
+        var outputFile = File(folder, "out")
+        if (outputFile.exists()) {
+            outputFile.deleteRecursively()
+        }
+        outputFile.mkdirs()
+
+        androidOutFolder = File(outputFile, "android")
+        iosOutFolder = File(outputFile, "ios")
+        androidOutFolder?.mkdirs()
+        iosOutFolder?.mkdirs()
+
+        processAnim(folder)
+        renameImgFile(folder)
+        processGroup(folder)
+    }
+
+    private fun processTmxFile(file : File) {
         mapId = Util.matchNum(file.nameWithoutExtension)
 
+        ID_DEFIN.clear()
+        tipTexts.clear()
         mapData.reset()
         mapData.filePrefix = file.nameWithoutExtension
 
@@ -136,23 +166,6 @@ object MapConvert {
         }
 
         convert(file.parentFile)
-    }
-
-    fun convert(folder: File) {
-        var outputFile = File(folder, "out")
-        if (outputFile.exists()) {
-            outputFile.deleteRecursively()
-        }
-        outputFile.mkdirs()
-
-        androidOutFolder = File(outputFile, "android")
-        iosOutFolder = File(outputFile, "ios")
-        androidOutFolder?.mkdirs()
-        iosOutFolder?.mkdirs()
-
-        processAnim(folder)
-        renameImgFile(folder)
-        processGroup(folder)
     }
 
     private fun processAnim(folder: File) {
