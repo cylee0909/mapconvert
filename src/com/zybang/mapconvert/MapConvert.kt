@@ -297,6 +297,12 @@ public class Calc${mapId}MapData extends BaseMapData {""")
             """);
 
             androidOutFile.appendText("""
+               public int getTipTextBg() {
+                    return R.drawable.g_calc_${mapId}_text_bg;
+               }
+            """)
+
+            androidOutFile.appendText("""
             @Override
             public int getMapHeight() {
                 return ${mapData.mapHeight};
@@ -547,7 +553,12 @@ public class Calc${mapId}MapData extends BaseMapData {""")
                     if (itname.equals("未解锁底座")) {
                         itname+="1"
                     }
-                    if (itname.equals("地图大背景") || itname.contains("map")) {
+                    if (itname.contains("文字背景")){
+                        var destFile = File(androidXdpDrawable, filePrefix+"_text_bg.9.png")
+                        if (!destFile.exists()) {
+                            it.copyTo(destFile)
+                        }
+                    } else if (itname.equals("地图大背景") || itname.contains("map")) {
                         var destFile = File(androidXdpDrawable, filePrefix+"_map.png")
                         if (!destFile.exists()) {
                             it.copyTo(destFile)
