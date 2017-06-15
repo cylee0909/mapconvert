@@ -458,7 +458,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
                     objGrp.iosParam!!.tipText = tipText
                     data.append("\"").append(tipText).append("\")")
                 } else{
-                    throw RuntimeException("objIndex error = "+objIndex)
+                    throw RuntimeException("objIndex error = "+objIndex +" "+obj.imgState)
                 }
             }
 
@@ -491,7 +491,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
             ImageItem.TYPE_FRIEND -> typeName = "friend"
             ImageItem.TYPE_BOSS -> typeName = "boss"
             ImageItem.TYPE_NORMAL -> typeName = "pedestal"
-            else -> throw RuntimeException("objType error "+imgState.objType)
+            else -> throw RuntimeException("objType error "+imgState.objType+" "+imgState)
         }
 
         result += typeName
@@ -501,7 +501,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
             1 -> stateName = "_p"
             2 -> stateName = "_c"
             3 -> stateName = "_l"
-            else -> throw RuntimeException("objState error "+imgState.objState)
+            else -> throw RuntimeException("objState error "+imgState.objState+" "+imgState)
         }
 
         if (imgState.objType == ImageItem.TYPE_FRIEND) {
@@ -522,7 +522,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
         if (imgIndex > 0) {
             result += ("_" + imgIndex)
         } else{
-            throw RuntimeException("objIndex must > 0, current is "+imgState.objIndex)
+            throw RuntimeException("objIndex must > 0, current is "+imgState.objIndex+" "+imgState)
         }
 
         return result
