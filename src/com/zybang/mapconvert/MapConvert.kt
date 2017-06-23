@@ -515,7 +515,7 @@ public class Calc${mapId}MapData extends BaseMapData {""")
         result += stateName
 
         var imgIndex = imgState.objIndex
-        if (imgState.objState == 3) { //如果是锁定状态，index为1
+        if (imgState.objState == 3 && imgState.objType != ImageItem.TYPE_BOSS) { //如果是锁定状态，index为1
             imgIndex = 1
         }
 
